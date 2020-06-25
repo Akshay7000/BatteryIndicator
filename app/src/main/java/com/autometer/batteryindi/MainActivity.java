@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver batterylevelReciver = new BroadcastReceiver() {
         // @SuppressLint("SetTextI18n")
 
+        @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
 
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
             int defaultValue = 0 ;
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, defaultValue);
-            battery.setText(String.valueOf(level)+"%");
+            battery.setText(level +"%");
             if( level==100)
                 mp.start();
 
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         this.registerReceiver(this.batterylevelReciver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED ));
 
         mp = MediaPlayer.create(this, R.raw.sample);
-        ImageView imageView = (ImageView)findViewById(R.id.image);
+        ImageView imageView = findViewById(R.id.image);
         imageView.setBackgroundResource(R.drawable.animation);
         batteryAnimation = (AnimationDrawable) imageView.getBackground ();
 
