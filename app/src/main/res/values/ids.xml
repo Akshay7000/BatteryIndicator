@@ -2,4 +2,5 @@
 <resources>
     <item name="batteryLevel" type="id" />
     <item name="clickme" type="id" />
+    <item name="animation" type="id" />
 </resources>
