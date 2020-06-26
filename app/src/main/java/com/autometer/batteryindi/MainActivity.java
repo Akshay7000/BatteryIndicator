@@ -22,24 +22,26 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mp;
     private Context mContext;
     private TextView mTextView;
+    boolean usbCharge;
+    boolean isCharging;
     private BroadcastReceiver batterylevelReciver = new BroadcastReceiver() {
-        // @SuppressLint("SetTextI18n")
 
         @SuppressLint("SetTextI18n")
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            Toast.makeText(mContext, "Received", Toast.LENGTH_SHORT).show();
+
             int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS,-1);
-            boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+             isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
                     ||
                     status == BatteryManager.BATTERY_STATUS_FULL;
             if(isCharging){
                 mTextView.setText("Charging : Yes.");
                 int chargePlug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED,-1);
-                boolean usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
+                usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
                 if(usbCharge){
                     mTextView.setText(mTextView.getText()+"\nUSB Charging");
+                    Toast.makeText(mContext, "Charging", Toast.LENGTH_SHORT).show();
                 }
                 boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
                 if(acCharge){
@@ -49,10 +51,13 @@ public class MainActivity extends AppCompatActivity {
                 if(wirelessCharge){
                     mTextView.setText(mTextView.getText()+"\nWireless Charging");
                 }
+                batteryAnimation.start();
             }
             else {
                 // Display the battery charging state
                 mTextView.setText("Charging : No.");
+                batteryAnimation.stop ();
+                Toast.makeText(mContext, "Disconnected", Toast.LENGTH_SHORT).show();
 
             }
             int defaultValue = 0 ;
@@ -84,8 +89,6 @@ public class MainActivity extends AppCompatActivity {
         batteryAnimation = (AnimationDrawable) imageView.getBackground ();
 
 
-
-
         mContext = getApplicationContext();
         IntentFilter iFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         mContext.registerReceiver(batterylevelReciver,iFilter);
@@ -95,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        batteryAnimation.start();
+        if(isCharging) {
+           batteryAnimation.start();
+        }
+
     }
 }
