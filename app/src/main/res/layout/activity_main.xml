@@ -5,59 +5,74 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/bg">
+    android:background="@drawable/bg21"
+    tools:context=".MainActivity">
 
-<LinearLayout
-
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    android:orientation="vertical">
-
-
-    <TextView
-        android:id="@+id/batteryLevel"
+    <LinearLayout
+        android:layout_marginTop="20sp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="@android:dimen/app_icon_size"
-        android:gravity="center"
-        android:textSize="35sp"
-        android:textColor="@color/background"
-        app:layout_constraintVertical_bias="0.376"
-         />
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/image" />
-    <TextView
-        android:id="@+id/tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="@color/background"
-        android:textAlignment="center"
-        />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberSigned"
-        android:autofillHints="" tools:targetApi="o" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:text="@string/set" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/batteryLevel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="@android:dimen/app_icon_size"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:textColor="@color/background"
+            app:layout_constraintVertical_bias="0.376"
+            />
+
+        <ImageView
+            android:layout_marginTop="20sp"
+            android:id="@+id/image"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/image" />
+        <TextView
+            android:layout_marginTop="20sp"
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/background"
+            android:textAlignment="center"
+            />
+
+        <EditText
+            android:layout_marginTop="50sp"
+            android:id="@+id/editText"
+            android:layout_width="200sp"
+            android:layout_height="40sp"
+            android:autofillHints=""
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:text="100"
+            android:maxLength="3"
+            android:hint="Enter Alert Value"
+            android:background="@drawable/edit_text"
+            android:drawableTintMode="screen"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textColor="@color/background"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            tools:targetApi="o" />
+
+        <Button
+            android:layout_marginTop="20sp"
+            android:id="@+id/button"
+            android:layout_width="150sp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:text="@string/set_alert"
+            android:background="@drawable/rounded_button"/>
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

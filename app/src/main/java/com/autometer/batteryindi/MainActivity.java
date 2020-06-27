@@ -9,7 +9,10 @@ import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.BatteryManager;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,13 +20,18 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+
     AnimationDrawable batteryAnimation;
     private TextView battery; //= findViewById(R.id.batteryLevel);
     MediaPlayer mp;
+    EditText editText;
+    int value=100;
     private Context mContext;
     private TextView mTextView;
     boolean usbCharge;
     boolean isCharging;
+
+
     private BroadcastReceiver batterylevelReciver = new BroadcastReceiver() {
 
         @SuppressLint("SetTextI18n")
@@ -32,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS,-1);
-             isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+            isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
                     ||
                     status == BatteryManager.BATTERY_STATUS_FULL;
             if(isCharging){
@@ -41,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB;
                 if(usbCharge){
                     mTextView.setText(mTextView.getText()+"\nUSB Charging");
-                    Toast.makeText(mContext, "Charging", Toast.LENGTH_SHORT).show();
+
                 }
                 boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
                 if(acCharge){
@@ -57,16 +65,20 @@ public class MainActivity extends AppCompatActivity {
                 // Display the battery charging state
                 mTextView.setText("Charging : No.");
                 batteryAnimation.stop ();
-                Toast.makeText(mContext, "Disconnected", Toast.LENGTH_SHORT).show();
+
 
             }
             int defaultValue = 0 ;
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, defaultValue);
             battery.setText(level +"%");
-            if( level==100)
-                mp.start();
 
+
+            if(level == value) {
+                mp.start();
+                Toast.makeText(mContext, "Charging Complected "+value+"%", Toast.LENGTH_SHORT).show();
             }
+
+        }
 
 
     };
@@ -76,10 +88,16 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        Button button1 = (Button)findViewById (R.id.button);
+        final EditText editText =(EditText)findViewById (R.id.editText);
         battery = findViewById(R.id.batteryLevel);
         this.registerReceiver(this.batterylevelReciver,new IntentFilter(Intent.ACTION_BATTERY_CHANGED ));
 
@@ -93,13 +111,24 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter iFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
         mContext.registerReceiver(batterylevelReciver,iFilter);
         mTextView = findViewById(R.id.tv);
+
+        button1.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                value= Integer.parseInt (editText.getText ().toString ());
+                Toast.makeText(mContext, "Alert Set to "+value+"%", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if(isCharging) {
-           batteryAnimation.start();
+            batteryAnimation.start();
         }
 
     }

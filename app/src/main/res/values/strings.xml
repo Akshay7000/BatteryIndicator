@@ -4,5 +4,9 @@
     <string name="image">Image</string>
     <string name="devloped_by_akshay">Devloped By Akshay</string>
     <string name="set">set</string>
+    <string name="hello_wellcome">hello wellcome</string>
+    <string name="todo">TODO</string>
+    <string name="my_life_matter_too">My Life Matter Too.</string>
+    <string name="set_alert">Set Alert</string>
 
 </resources>
