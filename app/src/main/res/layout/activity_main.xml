@@ -6,22 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg21"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    style="?android:attr/buttonBarStyle" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
 
     <LinearLayout
-        android:layout_marginTop="20sp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/batteryLevel"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@android:dimen/app_icon_size"
             android:gravity="center"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textColor="@color/background"
             app:layout_constraintVertical_bias="0.376"
             />
@@ -34,7 +40,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/image" />
         <TextView
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="20dp"
             android:id="@+id/tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,16 +50,16 @@
             />
 
         <EditText
-            android:layout_marginTop="50sp"
+            android:layout_marginTop="30dp"
             android:id="@+id/editText"
             android:layout_width="200sp"
             android:layout_height="40sp"
             android:autofillHints=""
             android:ems="10"
             android:inputType="numberSigned"
-            android:text="100"
+            android:text="@string/_100"
             android:maxLength="3"
-            android:hint="Enter Alert Value"
+            android:hint="@string/enter_alert_value"
             android:background="@drawable/edit_text"
             android:drawableTintMode="screen"
             android:layout_gravity="center"
@@ -61,18 +67,64 @@
             android:textAlignment="center"
             android:textColor="@color/background"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            tools:targetApi="o" />
+            tools:targetApi="o"
+            android:layout_marginBottom="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        tools:ignore="MissingConstraints"
+        style="?android:attr/buttonBarStyle" >
 
         <Button
-            android:layout_marginTop="20sp"
+
             android:id="@+id/button"
             android:layout_width="150sp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:text="@string/set_alert"
-            android:background="@drawable/rounded_button"/>
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_button"
 
+            android:capitalize="sentences"
+            android:text="@string/set_alert"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/buttonStop"
+            android:layout_width="150sp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/rounded_button"
+            android:text="@string/stop_alert"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:fontFamily="serif-monospace"
+            android:text="@string/all_lives_matter"
+            android:textAlignment="center"
+            android:textColor="@color/background"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="cursive"
+            android:text="@string/mine_too"
+            android:textAlignment="center"
+            android:textColor="@color/background"
+            android:textSize="15sp" />
+    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

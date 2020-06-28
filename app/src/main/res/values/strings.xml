@@ -8,5 +8,10 @@
     <string name="todo">TODO</string>
     <string name="my_life_matter_too">My Life Matter Too.</string>
     <string name="set_alert">Set Alert</string>
+    <string name="enter_alert_value">Enter Alert Value</string>
+    <string name="_100">100</string>
+    <string name="stop_alert">Stop Alert</string>
+    <string name="all_lives_matter">All Lives Matter.</string>
+    <string name="mine_too">Mine Too</string>
 
 </resources>

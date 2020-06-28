@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity {
             battery.setText(level +"%");
 
 
-            if(level == value) {
+            if(level >= value) {
                 mp.start();
-                Toast.makeText(mContext, "Charging Complected "+value+"%", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Charging Complected "+level+"%", Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        Button buttonst = (Button)findViewById (R.id.buttonStop);
         Button button1 = (Button)findViewById (R.id.button);
         final EditText editText =(EditText)findViewById (R.id.editText);
         battery = findViewById(R.id.batteryLevel);
@@ -120,6 +121,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        buttonst.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                finish ();
+                System.exit(0);
+            }
+        });
 
 
     }
@@ -127,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(isCharging) {
-            batteryAnimation.start();
-        }
+
+
+
 
     }
 }
